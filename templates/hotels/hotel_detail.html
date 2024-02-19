@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о гостинице</title>
+</head>
+<body>
+<div class="container">
+    <h1>Полная информация о гостинице: <br>{{hotel_id.title}}</h1>
+    <p><em>{{hotel_id.description}}</em></p>
+    <img src="{{ hotel_id.image }}" alt="{{hotel_id.title}}" width="550" height="300">
+    <p>Цена: {{hotel_id.price}}</p>
+    <p>Город: {{hotel_id.city}}</p>
+    <p>Страна: {{hotel_id.country}}</p>
+    <p>Рейтинг: {{hotel_id.rating}}</p>
+    <p>Адрес: {{hotel_id.address}}</p>
+    <p>Почта: {{hotel_id.email}}</p>
+    <p>Номер: {{hotel_id.number}}</p>
+    <p>Скидка по приглашению: {{hotel_id.discount}}</p>
+    <p>Дата добавления: {{hotel_id.created_at}}</p>
+    <p>Дата обновления: {{hotel_id.updated_at}}</p>
+</div>
+</body>
+</html>

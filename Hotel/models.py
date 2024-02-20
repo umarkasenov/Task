@@ -33,3 +33,13 @@ class Hotel(models.Model):
 
     def __str__(self):
         return f"{self.title}, {self.price}, {self.rating}"
+
+
+class ReviewsHotel(models.Model):
+    hotel_review = models.ForeignKey(Hotel, on_delete=models.CASCADE,
+                                      related_name="review_hotels")
+    text = models.TextField(verbose_name="Напишите коментарий")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.hotel_review}-{self.text}"

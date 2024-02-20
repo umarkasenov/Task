@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <button><a href="/hotel_detail/{{hotel_id.id}}/delete/">Удалить</a></button>
+    <button><a href="/hotel_detail/{{hotel_id.id}}/update/">Изменить</a></button>
     <title>Информация о гостинице</title>
 </head>
 <body>
@@ -19,6 +21,15 @@
     <p>Скидка по приглашению: {{hotel_id.discount}}</p>
     <p>Дата добавления: {{hotel_id.created_at}}</p>
     <p>Дата обновления: {{hotel_id.updated_at}}</p>
+    <h2>Коменты</h2>
+    <ul>
+        {% for i in hotel_id.review_hotels.all %}
+        <li>
+            <h3>{{i.text}}</h3>
+            <p>{{i.created_at}}</p>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 </body>
 </html>

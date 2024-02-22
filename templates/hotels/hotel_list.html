@@ -1,58 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hotel list</title>
-    <buttn><a href="/create_hotel/">Добавить</a></buttn>
-    <style>
-        body {
-            background-image: url("media/background.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-        li {
-            margin-bottom: 20px;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin-bottom: 10px;
-        }
-        p {
-            margin: 0;
-        }
-    </style>
-</head>
-<body>
-<ul>
+{% include "hotels/header.html" %}
+{% load static %}
+
+ <link rel="stylesheet" href="{% static 'css/background.css' %}">
+
+<br>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="admin/">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/create_hotel/">Add</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Выпадающий список
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/books/">News</a></li>
+                        <li><a class="dropdown-item" href="#">Другое действие</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Что-то еще здесь</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Отключенная</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
+                <button class="btn btn-outline-success" type="submit">Поиск</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<br>
+<div class="row">
     {% for i in hotel %}
-    <li>
-        <a href="/hotel_detail/{{i.id}}/" style="display: block; text-align: center;"><img src="{{i.image}}" alt="" width="550" height="300"></a>
-        <h2>Название: {{i.title}}</h2>
-        <p>Город: {{i.city}}</p>
-        <p>Цена: {{i.price}}</p>
-    </li>
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card">
+            <img src="{{i.image}}" class="card-img-top" alt="{{i.title}}">
+            <div class="card-body">
+                <h5 class="card-title">{{i.title}}</h5>
+                <p class="card-text">Город: {{i.city}}</p>
+                <p class="card-text">Цена: {{i.price}}</p>
+                <a href="/hotel_detail/{{i.id}}/" class="btn btn-primary">Подробнее</a>
+            </div>
+        </div>
+    </div>
     {% endfor %}
-</ul>
-</body>
-</html>
+</div>
+
+{% include "hotels/footer.html" %}

@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% include "hotels/header.html" %}
+<div class="container">
     <button><a href="/hotel_detail/{{hotel_id.id}}/delete/">Удалить</a></button>
     <button><a href="/hotel_detail/{{hotel_id.id}}/update/">Изменить</a></button>
-    <title>Информация о гостинице</title>
-</head>
-<body>
-<div class="container">
     <h1>Полная информация о гостинице: <br>{{hotel_id.title}}</h1>
     <p><em>{{hotel_id.description}}</em></p>
     <img src="{{ hotel_id.image }}" alt="{{hotel_id.title}}" width="550" height="300">
@@ -31,5 +25,5 @@
         {% endfor %}
     </ul>
 </div>
-</body>
-</html>
+{% include "hotels/footer.html" %}
+

@@ -1,9 +1,7 @@
-
+{% include "hotels/header.html" %}
 {% load static %}
 
-{% include "hotels/header.html" %}
-<link rel="stylesheet" href="{% static "css/creat_hotel.css" %}">
-
+<link rel="stylesheet" href="{% static 'css/creat_hotel.css' %}">
 
 <form class="decor" action="/create_hotel/" method="POST" enctype="multipart/form-data">
     <div class="form-left-decoration"></div>
@@ -17,4 +15,5 @@
         <input type="reset" value="Очистить">
     </div>
     <form>
+
 {% include "hotels/footer.html" %}

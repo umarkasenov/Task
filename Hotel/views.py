@@ -1,48 +1,69 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+from django.views import generic
 from . import models, forms
 
+# Обновление
+class UpdateHotelView(generic.UpdateView):
+    template_name = 'hotels/update_hotel.html'
+    context_object_name = 'hotel_id'
+    form_class = forms.HotelForm
+    success_url = "/"
 
-def update_hotel_view(request, id):
-    hotel_id = get_object_or_404(models.Hotel, id=id)
-    if request.method == 'POST':
-        form = forms.HotelForm(request.POST, instance=hotel_id)
-        if form.is_valid():
-            form.save()
-            return HttpResponse("<h1>Успешно обновлен в БД</h1> <a href='/'>Главная</a>")
-    else:
-        form = forms.HotelForm(instance=hotel_id)
-    return render(request, template_name="hotels/update_hotel.html",
-                  context={"form": form, "hotel_id": hotel_id})
+    def get_object(self, **kwargs):
+        hotel_id = self.kwargs.get("id")
+        return get_object_or_404(models.Hotel, id=hotel_id)
+
+    def form_valid(self, form):
+        return super(UpdateHotelView, self).form_valid(form=form)
+
+# Удаление
+class DeleteHotelView(generic.DeleteView):
+    template_name = 'hotels/delete_hotel.html'
+    success_url = "/"
+
+    def get_object(self, **kwargs):
+        hotel_id = self.kwargs.get("id")
+        return get_object_or_404(models.Hotel, id=hotel_id)
+
+# Создание
+class CreateHotelView(generic.CreateView):
+    template_name = 'hotels/create_form.html'
+    form_class = forms.HotelForm
+    success_url = "/"
+
+    def form_valid(self, form):
+        return super(CreateHotelView, self).form_valid(form=form)
+
+# Главная
+class HotelListView(generic.ListView):
+    template_name = "hotels/hotel_list.html"
+    context_object_name = "hotel"
+    model = models.Hotel
+
+    def get_queryset(self):
+        return self.model.objects.all()
+
+# Информация
+class HotelDetailView(generic.DetailView):
+    template_name = "hotels/hotel_detail.html"
+    context_object_name = "hotel_id"
+
+    def get_object(self, **kwargs):
+        hotel_id = self.kwargs.get("id")
+        return get_object_or_404(models.Hotel, id=hotel_id)
+
+#Поиск
 
 
-def delete_hotel_view(request, id):
-    hotel_id = get_object_or_404(models.Hotel, id=id)
-    hotel_id.delete()
-    return HttpResponse("<h1>Успешно удален из БД</h1> <a href='/'>Главная</a>")
+class SearchView(generic.ListView):
+    template_name = "hotels/hotel_list.html"
+    context_object_name = "hotel"
+    paginate_by = 5
 
+    def get_queryset(self):
+        return models.Hotel.objects.filter(title__icontains=self.request.GET.get("q"))
 
-def create_hotel_view(request):
-    if request.method == 'POST':
-        form = forms.HotelForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponse("<h1>Успешно добавлен в БД</h1> <a href='/'>Главная</a>")
-    else:
-        form = forms.HotelForm()
-    return render(request, template_name="hotels/create_form.html",
-                  context={"form": form})
-
-
-def hotel_list_view(request):
-    if request.method == 'GET':
-        hotel = models.Hotel.objects.all()
-        return render(request, template_name='hotels/hotel_list.html',
-                      context={'hotel': hotel})
-
-
-def hotel_list_detail_view(request, id):
-    if request.method == 'GET':
-        hotel_id = get_object_or_404(models.Hotel, id=id)
-        return render(request, template_name='hotels/hotel_detail.html',
-                      context={'hotel_id': hotel_id})
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["q"] = self.request.GET.get("q")
+        return context

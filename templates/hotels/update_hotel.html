@@ -1,19 +1,19 @@
+{% include "hotels/header.html" %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/update_hotel.css' %}">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Изменить</button>
+<link rel="stylesheet" href="{% static 'css/creat_hotel.css' %}">
+
+<form class="decor" method="POST" enctype="multipart/form-data">
+    <div class="form-left-decoration"></div>
+    <div class="form-right-decoration"></div>
+    <div class="circle"></div>
+    <div class="form-inner">
+        <h3>Обновить гостиницу</h3>
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Отправить">
+        <input type="reset" value="Очистить">
+    </div>
 </form>
 
-</body>
-</html>
-
+{% include "hotels/footer.html" %}

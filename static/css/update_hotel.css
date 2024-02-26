@@ -1,36 +1,92 @@
-
-form {
-    width: 50%; /* Ширина формы */
-    margin: 0 auto; /* Центрирование формы */
-    padding: 20px; /* Поля вокруг формы */
-    border: 1px solid #ccc; /* Граница формы */
-    border-radius: 5px; /* Скругление углов формы */
-    background-color: #f9f9f9; /* Цвет фона формы */
+* {
+   box-sizing: border-box;
 }
-
-/* Стили для кнопки */
-button[type="submit"] {
-    padding: 10px 20px; /* Внутренние отступы кнопки */
-    background-color: #007bff; /* Цвет фона кнопки */
-    color: #fff; /* Цвет текста кнопки */
-    border: none; /* Убираем границу кнопки */
-    border-radius: 5px; /* Скругление углов кнопки */
-    cursor: pointer; /* Изменяем курсор при наведении на кнопку */
+body {
+   background: #f69a73;
 }
-
-/* Стили для текстовых полей */
-input[type="text"],
-input[type="email"],
-textarea {
-    width: 100%; /* Ширина текстовых полей */
-    padding: 10px; /* Внутренние отступы текстовых полей */
-    margin-bottom: 10px; /* Отступ снизу текстовых полей */
-    border: 1px solid #ccc; /* Граница текстовых полей */
-    border-radius: 5px; /* Скругление углов текстовых полей */
+.decor {
+   position: relative;
+   max-width: 400px;
+   margin: 50px auto 0;
+   background: white;
+   border-radius: 30px;
 }
-
-/* Стили для ошибок */
-.error-message {
-    color: #dc3545; /* Цвет текста ошибки */
-    margin-bottom: 10px; /* Отступ снизу от текста ошибки */
+.form-left-decoration, .form-right-decoration {
+   content: "";
+   position: absolute;
+   width: 50px;
+   height: 20px;
+   background: #f69a73;
+   border-radius: 20px;
+}
+.form-left-decoration {
+   bottom: 60px;
+   left: -30px;
+}
+.form-right-decoration {
+   top: 60px;
+   right: -30px;
+}
+.form-left-decoration:before, .form-left-decoration:after, .form-right-decoration:before, .form-right-decoration:after {
+   content: "";
+   position: absolute;
+   width: 50px;
+   height: 20px;
+   border-radius: 30px;
+   background: white;
+}
+.form-left-decoration:before {
+   top: -20px;
+}
+.form-left-decoration:after {
+   top: 20px;
+   left: 10px;
+}
+.form-right-decoration:before {
+   top: -20px;
+   right: 0;
+}
+.form-right-decoration:after {
+   top: 20px;
+   right: 10px;
+}
+.circle {
+   position: absolute;
+   bottom: 80px;
+   left: -55px;
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   background: white;
+}
+.form-inner {
+   padding: 50px;
+}
+.form-inner input, .form-inner textarea {
+   display: block;
+   width: 100%;
+   padding: 0 20px;
+   margin-bottom: 10px;
+   background: #E9EFF6;
+   line-height: 40px;
+   border-width: 0;
+   border-radius: 20px;
+   font-family: 'Roboto', sans-serif;
+}
+.form-inner input[type="submit"] {
+   margin-top: 30px;
+   background: #f69a73;
+   border-bottom: 4px solid #d87d56;
+   color: white;
+   font-size: 14px;
+}
+.form-inner textarea {
+   resize: none;
+}
+.form-inner h3 {
+   margin-top: 0;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 500;
+   font-size: 24px;
+   color: #707981;
 }

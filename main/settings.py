@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "book",
     "Hotel",
+    "parser_app",
+    "registration_and_authorization",
 ]
 
 MIDDLEWARE = [

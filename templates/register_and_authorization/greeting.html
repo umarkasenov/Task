@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h1>Hello welcome !!!</h1>
+<ul>
+    {% for i in greet %}
+    <li>
+        <h2>{{i.username}}</h2>
+        <p>{{i.status}}</p>
+    </li>
+    {% endfor %}
+</ul>
+<form action="{% url 'users:login'%}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Выйти</button>
+</form>
+</body>
+</html>

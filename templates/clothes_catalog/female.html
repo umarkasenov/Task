@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Женский</h1>
+
+<ul>
+    {% for i in female_clothify %}
+    <li>
+        <h2>{{i.title}}</h2>
+        <p>{{i.price}}</p>
+        {% for j in i.tag.all %}
+        <p>{{j.name}}</p>
+        {% endfor %}
+    </li>
+    {% endfor %}
+
+</body>
+</html>

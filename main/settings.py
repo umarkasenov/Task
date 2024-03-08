@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "Hotel",
     "parser_app",
     "registration_and_authorization",
+    "Clothify",
 ]
 
 

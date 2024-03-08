@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h1>menswear</h1>
+<ul>
+    {% for i in menswear %}
+    <li>
+        <h2>{{i.title}}</h2>
+        <p>{{i.price}}</p>
+        {% for j in i.tag.all %}
+        <p>{{j.name}}</p>
+        {% endfor %}
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
